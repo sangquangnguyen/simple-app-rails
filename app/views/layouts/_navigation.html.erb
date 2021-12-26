@@ -1,0 +1,7 @@
+<nav class="navbar navbar-inverse" style="margin-top: 30px">
+  <div class="container">
+    <% if logged_in? %>
+    <%= link_to 'Log out', logout_path, method: :delete %>
+    <% end %>
+  </div>
+</nav>

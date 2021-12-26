@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <h1 class="title">Signup</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-offset-3 col-lg-6">
+      <%= form_with model: @employee, url: sign_up_path, method: :post do |f| %>
+        <div class="form-group">
+          <%= f.label :fname, 'First Name' %>
+          <%= f.text_field :fname, placeholder: "Enter your first name", class: "form-control" %>
+
+          <% @employee.errors.full_messages_for(:fname).each do |message| %>
+              <div><%= message %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :lname, 'Last Name' %>
+          <%= f.text_field :lname, placeholder: "Enter your last name", class: "form-control" %>
+
+          <% @employee.errors.full_messages_for(:lname).each do |message| %>
+              <div><%= message %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :birthday, 'Birthday' %>
+          <%= f.date_field :birthday, placeholder: "dd/MM/YYYY", as: :date, value: f.object.try(:strftime,"%d/%m/%Y") %>
+
+          <% @employee.errors.full_messages_for(:birthday).each do |message| %>
+              <div><%= message %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :avatar, 'Avatar' %>
+          <%= f.text_field :avatar, class: "form-control" %>
+
+          <% @employee.errors.full_messages_for(:avatar).each do |message| %>
+              <div><%= message %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, placeholder: "Enter your email", class: "form-control" %>
+
+          <% @employee.errors.full_messages_for(:email).each do |message| %>
+              <div><%= message %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, placeholder: "Enter your password",
+            class: "form-control" %>
+
+          <% @employee.errors.full_messages_for(:password).each do |message| %>
+              <div><%= message %></div>
+          <% end %>
+        </div>
+        <div>
+          <%= f.label :organisation_id %>
+          <%= f.select :organisation_id, @organisations %>
+        </div>
+        <div class="text-center">
+          <%= f.submit "Signup", class: "btn btn-info col-lg-12" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
