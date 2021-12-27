@@ -24,4 +24,9 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path, notice: 'Logged Out'
   end
+
+  def about
+    @user = Employee.last
+    render 'sessions/about'
+  end
 end

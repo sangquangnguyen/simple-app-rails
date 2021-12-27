@@ -1,5 +1,7 @@
 class EmployeePolicy < ApplicationPolicy
   def show?
+    return false if user.nil?
+
     case user.role
     when Employee.roles[:employee]
       user.id == record.id
@@ -13,6 +15,8 @@ class EmployeePolicy < ApplicationPolicy
   end
 
   def update?
+    return false if user.nil?
+
     case user.role
     when Employee.roles[:employee]
       user.id == record.id
@@ -26,6 +30,8 @@ class EmployeePolicy < ApplicationPolicy
   end
 
   def create?
+    return false if user.nil?
+
     case user.role
     when Employee.roles[:employee]
       false
@@ -37,6 +43,8 @@ class EmployeePolicy < ApplicationPolicy
   end
 
   def destroy?
+    return false if user.nil?
+
     case user.role
     when Employee.roles[:system]
       true

@@ -4,18 +4,18 @@ class OrganisationPolicy < ApplicationPolicy
   end
 
   def show?
-    user.role == Employee.roles[:system] || user.organisation.id == record.id
+    user.present? && (user.role == Employee.roles[:system] || user.organisation.id == record.id)
   end
 
   def create?
-    user.role == Employee.roles[:system]
+    user.present? && (user.role == Employee.roles[:system])
   end
 
   def update?
-    user.role != Employee.roles[:employee]
+    user.present? && (user.role != Employee.roles[:employee])
   end
 
   def destroy?
-    user.role == Employee.roles[:system]
+    user.present? && (user.role == Employee.roles[:system])
   end
 end
