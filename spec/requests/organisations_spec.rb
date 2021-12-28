@@ -44,7 +44,7 @@ RSpec.describe 'Organisations', type: :request do
       organisation_created = attributes_for(:organisation, name: 'Employment Hero 2', logo: nil)
       post '/organisations',
            params: { organisation: organisation_created }
-      expect(response.body).to include(`Logo can't be blank`)
+      expect(response.body).to include('Logo can&#39;t be blank')
     end
   end
 

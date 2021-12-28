@@ -25,7 +25,7 @@ class SignUpController < ApplicationController
   end
 
   def about
-    render 'sessions/about'
+    render 'sign_up/about'
   end
 
   private
