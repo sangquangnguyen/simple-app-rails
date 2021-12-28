@@ -24,6 +24,10 @@ class SignUpController < ApplicationController
     redirect_to login_path
   end
 
+  def about
+    render 'sessions/about'
+  end
+
   private
 
   def sign_up_params

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Organisation, type: :model do
   before(:each) do
-    @organisation = Organisation.create!(name: 'Employment Hero', logo: 'This is a logo URL')
+    @organisation = create(:organisation)
   end
 
   describe 'creation' do

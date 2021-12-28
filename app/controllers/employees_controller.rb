@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: %i[show edit update destroy]
   # allows only logged in users
   before_action :require_user_logged_in!
+  before_action :set_employee, only: %i[show edit update destroy]
 
   def show; end
 
@@ -13,6 +13,7 @@ class EmployeesController < ApplicationController
     if @employee.update(update_employee_params)
       redirect_to [@employee.organisation, @employee]
     else
+      @roles = Employee.roles.map { |key, value| [key, value] }
       render :edit
     end
   end

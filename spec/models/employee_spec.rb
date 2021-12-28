@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Employee, type: :model do
-  let(:organisation) { Organisation.create!(name: 'Employment Hero', logo: 'This is a logo URL') }
+  let(:organisation) { create(:organisation) }
   before(:each) do
-    @employee = Employee.create!(avatar: 'Avatar URL', fname: 'Sang', lname: 'Nguyen', birthday: '16/05/1996',
-                                 role: 'system', password: 'abc', email: 'test@gmail.com', organisation_id: organisation.id)
+    @employee = create(:employee, organisation_id: organisation.id)
   end
 
   describe 'creation' do

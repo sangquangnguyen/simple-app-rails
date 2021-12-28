@@ -1,7 +1,7 @@
 class OrganisationsController < ApplicationController
-  before_action :set_organisation, only: %i[show edit update destroy]
   # allows only logged in users
   before_action :require_user_logged_in!
+  before_action :set_organisation, only: %i[show edit update destroy]
 
   def index
     @organisations = Organisation.all
