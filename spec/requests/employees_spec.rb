@@ -45,11 +45,11 @@ RSpec.describe 'Employees', type: :request do
       employee_created = attributes_for(:employee, email: nil)
       post organisation_employees_path(organisation, @employee),
            params: { employee: employee_created }
-      expect(response.body).to include('Email can&#39;t be blank')
+      expect(response.body).to include CGI.escapeHTML("Email can't be blank")
     end
   end
 
-  describe 'PUT /organisations' do
+  describe 'PUT /employees/:id' do
     before(:each) do
       sign_in(@employee.email, password)
     end
@@ -65,7 +65,8 @@ RSpec.describe 'Employees', type: :request do
       employee_updated = attributes_for(:employee, lname: nil)
       put organisation_employee_path(organisation, @employee),
           params: { employee: employee_updated }
-      expect(response.body).to include('Lname can&#39;t be blank')
+      puts CGI.escapeHTML("Lname can't be blank")
+      expect(response.body).to include CGI.escapeHTML("Lname can't be blank")
     end
   end
 end

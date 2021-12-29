@@ -24,9 +24,9 @@ RSpec.describe 'SignUps', type: :request do
       employee = attributes_for(:employee, organisation_id: organisation.id, email: nil, fname: nil)
       post '/sign_up', params: { employee: employee }
       expect(response).to have_http_status(:success)
-      expect(response.body).to include('Fname can&#39;t be blank')
-      expect(response.body).to include('Email can&#39;t be blank')
-      expect(response.body).to include('Email Invalid email')
+      expect(response.body).to include CGI.escapeHTML("Fname can't be blank")
+      expect(response.body).to include CGI.escapeHTML("Email can't be blank")
+      expect(response.body).to include CGI.escapeHTML('Email Invalid email')
     end
   end
 
