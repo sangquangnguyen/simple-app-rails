@@ -8,7 +8,7 @@ RSpec.describe 'organisations/edit.html.erb', type: :view do
   describe 'organisations#edit' do
     it 'displays correct view' do
       assign(:organisation, @organisation)
-      render template: 'organisations/edit.html.erb'
+      render
       expect(rendered).to include('Editing Organisation')
       expect(rendered).to include('Employment Hero')
       expect(rendered).to include('Update Organisation')

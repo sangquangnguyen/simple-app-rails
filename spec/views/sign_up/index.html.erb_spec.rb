@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'sign_up/index.html.haml', type: :view do
+RSpec.describe 'sign_up/index.html.erb', type: :view do
   before(:each) do
     @organisation = create(:organisation)
   end
@@ -10,7 +10,7 @@ RSpec.describe 'sign_up/index.html.haml', type: :view do
       organisations = Organisation.all.map { |organisation| [organisation.name, organisation.id] }
       assign(:employee, Employee.new)
       assign(:organisations, organisations)
-      render template: 'sign_up/index.html.erb'
+      render
       expect(rendered).to include('Signup')
       expect(rendered).to include('First Name')
       expect(rendered).to include('Last Name')

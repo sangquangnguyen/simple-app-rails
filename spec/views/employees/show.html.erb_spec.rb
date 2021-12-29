@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'employees', type: :view do
+RSpec.describe 'employees/show.html.erb', type: :view do
   before(:each) do
     @organisation = create(:organisation)
     @employee = create(:employee, organisation_id: @organisation.id)
@@ -12,7 +12,7 @@ RSpec.describe 'employees', type: :view do
         allow(view).to receive(:policy).and_return(double('some policy', update?: true))
       end
       assign(:employee, @employee)
-      render template: 'employees/show.html.erb'
+      render
       expect(rendered).to include('Sang Nguyen')
       expect(rendered).to include('Avatar URL')
       expect(rendered).to include('20/12/2021')
@@ -27,7 +27,7 @@ RSpec.describe 'employees', type: :view do
         allow(view).to receive(:policy).and_return(double('some policy', update?: false))
       end
       assign(:employee, @employee)
-      render template: 'employees/show.html.erb'
+      render
       expect(rendered).to include('Sang Nguyen')
       expect(rendered).to include('Avatar URL')
       expect(rendered).to include('20/12/2021')

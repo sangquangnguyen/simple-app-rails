@@ -4,7 +4,7 @@ RSpec.describe 'organisations/new.html.erb', type: :view do
   describe 'organisations#new' do
     it 'displays correct view' do
       assign(:organisation, Organisation.new)
-      render template: 'organisations/new.html.erb'
+      render
       expect(rendered).to include('Creating Organisation')
       expect(rendered).to include('Name')
       expect(rendered).to include('Logo')

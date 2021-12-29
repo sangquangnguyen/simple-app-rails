@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'sessions/new.html.haml', type: :view do
+RSpec.describe 'sessions/new.html.erb', type: :view do
   describe 'session#new' do
     it 'displays correct view' do
-      render template: 'sessions/new.html.erb'
+      render
       expect(rendered).to include('Login')
       expect(rendered).to include('Email')
       expect(rendered).to include('Password')
