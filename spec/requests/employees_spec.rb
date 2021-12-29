@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Employees', type: :request do
   let(:organisation) { create(:organisation) }
+  let(:password) { '123456' }
   before(:each) do
-    @employee = create(:employee, organisation_id: organisation.id)
+    @employee = create(:employee, organisation_id: organisation.id, verified: true, password: password)
   end
 
   describe 'GET /employees/:id' do
@@ -16,7 +17,7 @@ RSpec.describe 'Employees', type: :request do
 
     describe 'when user is logged' do
       before(:each) do
-        allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @employee.id } }
+        sign_in(@employee.email, password)
       end
 
       it 'shows all activities for signed in user' do
@@ -30,7 +31,7 @@ RSpec.describe 'Employees', type: :request do
 
   describe 'POST /employees/:id' do
     before(:each) do
-      allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @employee.id } }
+      sign_in(@employee.email, password)
     end
 
     it 'should function correctly' do
@@ -50,7 +51,7 @@ RSpec.describe 'Employees', type: :request do
 
   describe 'PUT /organisations' do
     before(:each) do
-      allow_any_instance_of(ActionDispatch::Request).to receive(:session) { { user_id: @employee.id } }
+      sign_in(@employee.email, password)
     end
 
     it 'should function correctly' do
