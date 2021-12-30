@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'organisations/index.html.erb', type: :view do
+  include Pundit
+
   before(:each) do
     @organisation = create(:organisation)
     @employee = create(:employee, organisation_id: @organisation.id)
@@ -8,10 +10,8 @@ RSpec.describe 'organisations/index.html.erb', type: :view do
 
   describe 'organisations#index' do
     it 'displays correct view when having permissions to show, edit and delete' do
-      without_partial_double_verification do
-        allow(view).to receive(:policy).and_return(double('some policy', show?: true, update?: true, destroy?: true,
-                                                                         create?: true))
-      end
+      allow(view).to receive(:policy).and_return(double('some policy', show?: true, update?: true, destroy?: true,
+                                                                       create?: true))
       organisations = Organisation.all
       assign(:organisations, organisations)
       render
@@ -26,10 +26,8 @@ RSpec.describe 'organisations/index.html.erb', type: :view do
     end
 
     it 'displays correct view when do not have permissions to show, edit and delete' do
-      without_partial_double_verification do
-        allow(view).to receive(:policy).and_return(double('some policy', show?: false, update?: false, destroy?: false,
-                                                                         create?: false))
-      end
+      allow(view).to receive(:policy).and_return(double('some policy', show?: false, update?: false, destroy?: false,
+                                                                       create?: false))
       organisations = Organisation.all
       assign(:organisations, organisations)
       render

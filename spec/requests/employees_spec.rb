@@ -65,7 +65,6 @@ RSpec.describe 'Employees', type: :request do
       employee_updated = attributes_for(:employee, lname: nil)
       put organisation_employee_path(organisation, @employee),
           params: { employee: employee_updated }
-      puts CGI.escapeHTML("Lname can't be blank")
       expect(response.body).to include CGI.escapeHTML("Lname can't be blank")
     end
   end

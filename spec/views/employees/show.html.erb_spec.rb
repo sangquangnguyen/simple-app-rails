@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'employees/show.html.erb', type: :view do
+  include Pundit
+
   before(:each) do
     @organisation = create(:organisation)
     @employee = create(:employee, organisation_id: @organisation.id)
@@ -8,9 +10,7 @@ RSpec.describe 'employees/show.html.erb', type: :view do
 
   describe 'employees#index' do
     it 'displays correct view when having permissions to edit' do
-      without_partial_double_verification do
-        allow(view).to receive(:policy).and_return(double('some policy', update?: true))
-      end
+      allow(view).to receive(:policy).and_return(double('some policy', update?: true))
       assign(:employee, @employee)
       render
       expect(rendered).to include('Sang Nguyen')
@@ -23,9 +23,7 @@ RSpec.describe 'employees/show.html.erb', type: :view do
     end
 
     it 'displays correct view when dont have permissions to edit' do
-      without_partial_double_verification do
-        allow(view).to receive(:policy).and_return(double('some policy', update?: false))
-      end
+      allow(view).to receive(:policy).and_return(double('some policy', update?: false))
       assign(:employee, @employee)
       render
       expect(rendered).to include('Sang Nguyen')
