@@ -47,6 +47,7 @@ tags
 /config/application.yml
 /config/intermediary.yml
 /config/database.yml
+/config/master.key
 
 # Zeus files
 zeus.json
